@@ -55,3 +55,10 @@ makeTea(3); - it will be run however the tea will be undefined.
 In this case JS ignores the extra.
 3) What does a function return if it doesn't have a return statement?  
 A function without a return statement returns undefined.  
+
+
+### Arrays
+Can have different types.  
+Add element to array:
+- myArray[0] = 1; // Will create a new element with index 0.
+- myArray.push("hello world!") //I like this way much better for now.
