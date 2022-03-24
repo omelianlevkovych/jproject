@@ -5,7 +5,7 @@ import './index.css';
 class Square extends React.Component {
     render() {
       return (
-        <button className="square">
+        <button className="square" onClick={function() {console.log('click'); }}>
           {this.props.value}
         </button>
       );
@@ -13,10 +13,13 @@ class Square extends React.Component {
   }
 
   class Board extends React.Component {
+    // seems to be some kind of private function, only used in Board.render()
     renderSquare(i) {
       return <Square value = {i}/>;
     }
   
+    // okay so it seems to be second function of Board class.
+    // it seems to render squares, but why render function is actually called on main??
     render() {
       const status = 'Next player: X';
   
