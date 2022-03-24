@@ -21,9 +21,21 @@ class Square extends React.Component {
   }
 
   class Board extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        squares: Array(9).fill(null),
+      }
+    }
+
     // seems to be some kind of private function, only used in Board.render()
     renderSquare(i) {
-      return <Square value = {i}/>;
+      return(
+        <Square 
+          value = {this.state.squares[i]}
+          onClick={() => this.handleClick(i)}
+        />
+        );
     }
   
     // okay so it seems to be second function of Board class.
