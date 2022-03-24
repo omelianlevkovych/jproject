@@ -41,7 +41,7 @@ import './index.css';
     // okay so it seems to be second function of Board class.
     // it seems to render squares, but why render function is actually called on main??
     render() {
-      const status = 'Next player: X';
+      const status = 'Next player: ' + (this.state.xIsNextMove ? 'X' : 'O');
   
       return (
         <div>
