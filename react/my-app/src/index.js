@@ -21,6 +21,10 @@ import './index.css';
 
     handleClick(i) {
       const squares = this.state.squares.slice();
+      // if already we have a winner or this sqare is filled
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
       squares[i] = this.state.xIsNextMove ? 'X' : 'O';
       this.setState({
         squares: squares,
@@ -41,7 +45,14 @@ import './index.css';
     // okay so it seems to be second function of Board class.
     // it seems to render squares, but why render function is actually called on main??
     render() {
-      const status = 'Next player: ' + (this.state.xIsNextMove ? 'X' : 'O');
+      const winner = calculateWinner(this.state.squares);
+      let status;
+      if (winner) {
+        status = 'Winner: ' + winner;
+      }
+      else {
+        status = 'Next player: ' + (this.state.xIsNextMove ? 'X' : 'O');
+      }
   
       return (
         <div>
@@ -88,4 +99,27 @@ import './index.css';
     <Game />,
     document.getElementById('root')
   );
-  
+
+
+  function calculateWinner(squares) {
+    // if line is filled by one symbol it is considered as win
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < lines.length; ++i) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
+        // here you can return squares[a] or sqauares[b] or squares[c]
+        return squares[c];
+      }
+    }
+    return null;
+  }
