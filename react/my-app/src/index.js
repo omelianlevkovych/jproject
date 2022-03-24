@@ -15,13 +15,17 @@ import './index.css';
       super(props);
       this.state = {
         squares: Array(9).fill(null),
+        xIsNextMove: true,
       }
     }
 
     handleClick(i) {
       const squares = this.state.squares.slice();
-      squares[i] = 'X';
-      this.setState({squares: squares});
+      squares[i] = this.state.xIsNextMove ? 'X' : 'O';
+      this.setState({
+        squares: squares,
+        xIsNextMove: !this.state.xIsNextMove,
+      });
     }
 
     // seems to be some kind of private function, only used in Board.render()
